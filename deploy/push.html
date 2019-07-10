@@ -1,0 +1,60 @@
+<html>
+
+<head>
+    <title>RMQ Deployment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type = "text/javascript">
+        function push() {
+            //debugger;
+            $('.loader').show();
+            var xhr = new XMLHttpRequest();
+            var url = "clientPush.php";
+            var destination = document.getElementById("destination").value;
+            var version = document.getElementById("version").value;
+            var type = 'push';
+
+            var data = "destination=" + destination + "&version=" + version + "&type=" + type;
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    $('.loader').hide();
+                    if (this.responseText.trim() == '1') {
+                        
+                        document.getElementById("output").innerHTML = "Push ver" + version + " on layer " + destination + " completed successfully.";
+                    }
+                    else{
+                        document.getElementById("output").innerHTML = "Push ver" + version + " on layer " + destination + " failed.";;
+                    }
+                    
+                }
+            };
+            xhr.send(data);
+
+        }
+    </script>
+    <h1>RMQ Deploy MGMT</h1> 
+    <h2>Push</h2>
+    <br>
+    Select destination layer:
+    <select name="destination" id="destination" form="pushform">
+        <option value="live">Live</option>
+        <option value="qa">QA</option>
+        <option value="dev">Development</option>
+    </select>
+    <br>
+    <br>
+    <form action="clientpush.php" id="pushform">
+        Version:<input type="text" name="version" id="version">
+        <button type="button" onclick="push();">Submit</button>
+    </form>
+    <div class="loader" style="display: none;">Loading...</div>
+    <div id="output"></div>
+    <div class="home"><a id="homelink" href="index.html">Home</a></div>
+</body>
+
+</html>

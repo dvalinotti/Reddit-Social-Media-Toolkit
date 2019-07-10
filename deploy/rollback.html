@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <title>RMQ Deployment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type = "text/javascript">
+        function rollback() {
+            //debugger;
+            $('.loader').show();
+            var xhr = new XMLHttpRequest();
+            var url = "clientRollback.php";
+            var layer = document.getElementById("layer").value;
+            var type = 'rollback';
+
+            var data = "layer=" + layer + "&type=" + type;
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    $('.loader').hide();
+                    if (this.responseText.trim() == '1') {
+                        
+                        document.getElementById("output").innerHTML = "Rollback on layer " + layer + " completed successfully.";
+                    }
+                    else{
+                        document.getElementById("output").innerHTML = "Rollback on layer " + layer + " failed.";;
+                    }
+                    
+                }
+            };
+            xhr.send(data);
+
+        }
+    </script>
+    <h1>RMQ Deploy MGMT</h1> 
+    <h2>Rollback</h2>
+    <br>
+    Select layer layer:
+    <select name="layer" id="layer" form="rollbackform">
+        <option value="live">Live</option>
+        <option value="qa">QA</option>
+        <option value="dev">Development</option>
+    </select>
+    <br>
+    <br>
+    <form action="clientrollback.php" id="rollbackform">
+        <button type="button" onclick="rollback();">Submit</button>
+    </form>
+    <div class="loader" style="display: none;">Loading...</div>
+    <div id="output"></div>
+    <div class="home"><a id="homelink" href="index.html">Home</a></div>
+</body>
+
+</html>

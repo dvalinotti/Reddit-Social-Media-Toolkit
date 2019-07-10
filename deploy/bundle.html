@@ -1,0 +1,60 @@
+<html>
+
+<head>
+    <title>RMQ Deployment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type = "text/javascript">
+        function bundle() {
+            //debugger;
+            $('.loader').show();
+            var xhr = new XMLHttpRequest();
+            var url = "clientBundle.php";
+            var source = document.getElementById("source").value;
+            var version = document.getElementById("version").value;
+            var type = 'bundle'
+
+            var data = "source=" + source + "&version=" + version + "&type=" + type;
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    $('.loader').hide();
+                    if (this.responseText.trim() == '1') {
+                        
+                        document.getElementById("output").innerHTML = "Bundle ver" + version + " on layer " + source + " completed successfully.";
+                    }
+                    else{
+                        document.getElementById("output").innerHTML = "Bundle ver" + version + " on layer " + source + " failed.";;
+                    }
+                    
+                }
+            };
+            xhr.send(data);
+
+        }
+    </script>
+    <h1>RMQ Deploy MGMT</h1> 
+    <h2>Bundle</h2>
+    <br>
+    Select source layer:
+    <select name="source" id="source" form="bundleform">
+        <option value="live">Live</option>
+        <option value="qa">QA</option>
+        <option value="dev">Development</option>
+    </select>
+    <br>
+    <br>
+    <form action="clientBundle.php" id="bundleform">
+        Version:<input type="text" name="version" id="version">
+        <button type="button" onclick="bundle();">Submit</button>
+    </form>
+    <div class="loader" style="display: none;">Loading...</div>
+    <div id="output"></div>
+    <div class="home"><a id="homelink" href="index.html">Home</a></div>
+</body>
+
+</html>

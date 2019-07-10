@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="color-change-2x">
+	<div class="header slide-in-blurred-top">
+		<h3 class="text-pop-up-top" >Reddit Social Media Aggregator</h3>
+	</div>
+	<div class="slide-in-elliptic-top-fwd" style="z-index: 1">
+		<fieldset id="field" class="loginfield" style="border: none; font-weight: bold; text-transform: uppercase; color: white; font-size: 1.25em">
+			<form action="RMQClient.php" method="POST" class="loginform">
+				<div class="login-fields">
+					<label for="user" style="width: 6em; padding-right: 1em"> Username</label>
+					<input id="user" type="text" name="user" autocomplete="off" placeholder="Username" Required><br><br>
+				</div>
+				<div class="login-fields">
+					<label for="user" style="width: 6em; padding-right: 1em">Password</label>
+					<input id="pass" type="password" name="pass" autocomplete="off" placeholder="Password" Required><br><br>
+				</div>
+				<div class="wrapper">
+					<input type="submit" name="Submit" id="LoginSubmit" value="Submit" style="margin-top: 1em;z-index: 2">
+				</div>
+				<br>
+			</form>
+			<form action="signup.html" class="loginform">
+				<div class="formwrapper">
+					<p style="text-transform: none"> If you do not have a login please click the sign up button and sign up</p>
+					<input type="submit" value="Sign Up" placeholder="Sign Up" style="width: 6em;">
+				</div>
+			</form>
+		</fieldset>
+	</div>
+	<div id="output">
+	</div>
+</body>

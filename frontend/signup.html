@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="color-change-2x">
+	<script type="text/javascript" src="sidenav.js"></script>
+	<script type="text/javascript" src="fns.js"></script>
+	<div class="header slide-in-blurred-right">
+		<h3 class="text-pop-up-top" style="animation-delay: 0s">Signup</h3>
+	</div>
+	<div class="slide-in-blurred-left" style="width: 50%;margin: 0 auto; animation-delay: 0.25s;" >
+		<fieldset id="field" class="shadow-drop-center" style=" border: none">
+			<form action="RMQSignClient.php" method="post" class="signupform" style="font-weight: bold; text-transform: uppercase; color: white; font-size: 1.25em">
+				<div style="display:flex; flex-direction: column;align-items: center;">
+					<label for="user"> Username</label>
+					<input id="signuser" type="text" name="signuser" autocomplete="off" placeholder="Username" Required><br><br>
+					<label for="password">Password</label>
+					<input id="signpass" type="password" name="signpass" autocomplete="off" placeholder="Password" Required><br><br>
+					<label for="password">Re-enter Password</label>
+					<input id="resignpass" type="password" name="resignpass" autocomplete="off" placeholder="Password" required="">
+				</div>
+
+				<div class="wrapper" style="margin-top: 1em;">
+					<input type="submit" id="SignUpSubmit" value="submit">
+				</div>
+				<br>
+			</form>
+			<form action="login.html">
+				<div class="wrapper">
+					<input type="submit" value="Cancel" placeholder="Cancel">
+				</div>
+			</form>
+		</fieldset>
+	</div>
+
+</body>

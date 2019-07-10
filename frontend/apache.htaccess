@@ -1,0 +1,4 @@
+Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+Header set Access-Control-Allow-Headers "application/x-www-form-urlencoded,x-test-header, Origin, X-Requested-With, Content-Type, Accept"
+

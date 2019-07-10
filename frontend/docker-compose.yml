@@ -1,0 +1,10 @@
+version: '3.1'
+
+services:
+        apache2:
+                image: php:7.2-apache
+                ports:
+                        - '8080:80'
+                volumes:
+                        - '/home/dan/git/frontend/:/var/www/html/'
+                container_name: dev-frontend
